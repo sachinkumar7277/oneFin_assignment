@@ -1,5 +1,5 @@
-# oneFin_assignment
-oneFin assignment for building movie-collection api for web application with JWT authentication
+# OneFin_assignment
+OneFin assignment for building movie-collection api for web application with JWT authentication
 # Project Set Up Installation
     run below command in your terminal 
     git clone https://github.com/sachinkumar7277/oneFin_assignment.git
