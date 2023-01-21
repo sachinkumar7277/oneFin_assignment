@@ -25,13 +25,13 @@ from movie_collection.views import RegisterAPI, LoginApi, MoivesList, Collection
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', RegisterAPI.as_view()),
+    path('register/', RegisterAPI.as_view(), name="register"),
     path('login/', LoginApi.as_view()),
-    path('movies/', MoivesList.as_view()),
-    path('request-count/', RequestCounterView.as_view()),
-    path('request-count/reset', RequestCounterView.as_view()),
-    path('collection/<str:pk>', CollectionView.as_view()),
-    path('collection/', CollectionListView.as_view()),
+    path('movies/', MoivesList.as_view(), name="movies"),
+    path('request-count/', RequestCounterView.as_view(), name="request_count"),
+    path('request-count/reset', RequestCounterView.as_view(), name="request_count_reset"),
+    path('collection/<str:pk>', CollectionView.as_view(), name="collection_by_id"),
+    path('collection/', CollectionListView.as_view(), name="collection_list"),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
