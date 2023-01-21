@@ -6,8 +6,8 @@ import dotenv
 def retry(times, exceptions):
     """
     Retry Decorator
-    Retries the wrapped function/method `times` times if the exceptions listed
-    in ``exceptions`` are thrown
+    It takes two arguments times (number of times you want to retry) and list of exceptions
+    and it wrapp a function/method
     :param times: The number of times to repeat the wrapped function/method
     :type times: Int
     :param Exceptions: Lists of exceptions that trigger a retry attempt
@@ -29,15 +29,3 @@ def retry(times, exceptions):
             return func(*args, **kwargs)
         return fn
     return decorator
-
-
-# @retry(times=3, exceptions=(ValueError, TypeError, Exception))
-# def fetchMovies(page):
-#     url = f"https://demo.credy.in/api/v1/maya/movies/?page={page}"
-#     response = requests.get(url=url, auth=(credy_username, credy_password))
-#     if response.status_code == 200:
-#         data = json.loads(response.content)
-#         return data
-#     else:
-#         raise ValueError('response code is not 200')
-#         # return Response(data, status=status.HTTP_200_OK)
