@@ -10,6 +10,12 @@ from movie_collection.serializers import *
 # Create your tests here.
 class CollectionListTestCase(TestCase):
     def get_user(self, username, password):
+        """ This method will help in getting token for authentication
+            it takes two parameter
+            :param username
+            :param password
+            and generate access_token using register API
+        """
         client = APIClient()
         response = self.client.post(reverse('register'), content_type="application/json",
                                     data={"username": username, "password": password})
@@ -17,6 +23,10 @@ class CollectionListTestCase(TestCase):
         return response.data['access_token']
 
     def setUp(self):
+        """ Setting up all required data for testing such as access_token, user
+            data etc
+        """
+
         self.token = self.get_user("test_user@test.com", "TestPassword")
         self.user = User.objects.get(username="test_user@test.com")
         self.token1 = self.get_user("test_user1@test.com", "TestPassword1")
