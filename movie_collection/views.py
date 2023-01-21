@@ -1,10 +1,7 @@
-from django.shortcuts import render
 import requests
 import json
 import os
 from dotenv import load_dotenv
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from requests.auth import HTTPBasicAuth
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -12,8 +9,6 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-
 from .decoretors import retry
 from .models import Collection, Movies, RequestCounter
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, CollectionSerializer, \
@@ -31,8 +26,6 @@ def get_tokens_for_user(user):
         'access': str(refresh.access_token),
     }
 
-
-# Create your views here.
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -108,7 +101,7 @@ class MoivesList(APIView):
         return Response(data)
 
 
-class CollectionListView(ListAPIView, CreateAPIView,):
+class CollectionListView(ListAPIView, CreateAPIView, ):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -181,4 +174,3 @@ class RequestCounterView(CreateAPIView, RetrieveAPIView):
             request.save()
         return Response(
             {"is_success": True, 'status_code': status.HTTP_200_OK, "message": "request count reset successfully"})
-
