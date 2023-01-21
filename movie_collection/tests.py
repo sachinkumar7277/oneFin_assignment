@@ -75,6 +75,16 @@ class CollectionListTestCase(TestCase):
         }
         self.collection_id = None
 
+    def test_get_movies(self):
+        client = APIClient()
+
+        """ Making get call to request counter API and checking the status code """
+
+        response = self.client.get(
+            reverse('movies'),
+            HTTP_AUTHORIZATION='Bearer ' + self.token)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_get_collection(self):
         client = APIClient()
 
